@@ -70,7 +70,7 @@ Partial Class Form1
         Label1.AutoSize = True
         Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(620, 31)
+        Label1.Location = New Point(574, 9)
         Label1.Name = "Label1"
         Label1.Size = New Size(95, 37)
         Label1.TabIndex = 2
