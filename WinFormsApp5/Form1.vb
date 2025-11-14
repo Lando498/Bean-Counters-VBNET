@@ -1,6 +1,9 @@
 ﻿Imports System
+Imports System.Diagnostics.Metrics
 Imports System.Drawing
+Imports System.Net
 Imports System.Windows.Forms
+Imports System.IO
 Public Class Form1
     Dim num As Integer
     Dim VelocityY As Double = 0
@@ -10,6 +13,8 @@ Public Class Form1
     Dim groundLevel As Integer
     Dim X As Integer
     Dim Diff As Double
+    Private BestPath As String = "Best.txt"
+    Dim Best As Integer
 
     Private Sub Form1_MouseMove(Sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         PictureBox1.Location = New Point(e.X - 90, 466)
@@ -29,9 +34,26 @@ Public Class Form1
         Timer1.Start()
         Timer2.Start()
         Label1.Text = "Score: 0"
+        If File.Exists(BestPath) Then
+            Try
+                Dim text As String = File.ReadAllText(BestPath)
+                Best = Integer.Parse(text)
+            Catch
+                Best = 0
+            End Try
+            Label5.Text = "HighScore: " & Best
+        End If
+
+    End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        File.WriteAllText(BestPath, Best.ToString())
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        If Score > Best Then
+            Best = Score
+        End If
         VelocityY += gravity
         PictureBox2.Top += CInt(VelocityY)
         If PictureBox2.Bounds.IntersectsWith(PictureBox1.Bounds) Then
@@ -74,9 +96,12 @@ Public Class Form1
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If PictureBox2.Top = groundLevel Then
-            Score -= 1
-            Label1.Text = "Score: " & Score.ToString()
-            Diff -= 0.25
+            If Score < 0 Then
+                Label3.Visible = True
+                Application.DoEvents()
+                Threading.Thread.Sleep(1500)
+                End
+            End If
             Select Case num
                 Case 1
                     PictureBox2.Location = New Point(12, -104)
@@ -99,11 +124,6 @@ Public Class Form1
             Application.DoEvents()
             Threading.Thread.Sleep(1500)
             End
-        ElseIf Score > 19 Then
-            Label4.Visible = True
-            Application.DoEvents()
-            Threading.Thread.Sleep(1500)
-            End
         End If
         If Diff = 1 Then
             gravity = 1
@@ -115,6 +135,36 @@ Public Class Form1
             gravity = 4
         ElseIf Diff = 5 Then
             gravity = 5
+        ElseIf Diff = 6 Then
+            gravity = 6
+        ElseIf Diff = 7 Then
+            gravity = 7
+        ElseIf Diff = 8 Then
+            gravity = 8
+        ElseIf Diff = 9 Then
+            gravity = 9
+        ElseIf Diff = 10 Then
+            gravity = 10
+        ElseIf Diff = 11 Then
+            gravity = 11
+        ElseIf Diff = 12 Then
+            gravity = 12
+        ElseIf Diff = 13 Then
+            gravity = 13
+        ElseIf Diff = 14 Then
+            gravity = 14
+        ElseIf Diff = 15 Then
+            gravity = 15
+        ElseIf Diff = 16 Then
+            gravity = 16
+        ElseIf Diff = 17 Then
+            gravity = 17
+        ElseIf Diff = 18 Then
+            gravity = 18
+        ElseIf Diff = 19 Then
+            gravity = 19
+        ElseIf Diff = 20 Then
+            gravity = 20
         End If
     End Sub
 End Class

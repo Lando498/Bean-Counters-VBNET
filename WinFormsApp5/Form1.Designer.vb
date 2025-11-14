@@ -31,7 +31,7 @@ Partial Class Form1
         Timer3 = New Timer(components)
         Label2 = New Label()
         Label3 = New Label()
-        Label4 = New Label()
+        Label5 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -106,17 +106,16 @@ Partial Class Form1
         Label3.Text = "GAME OVER"
         Label3.Visible = False
         ' 
-        ' Label4
+        ' Label5
         ' 
-        Label4.AutoSize = True
-        Label4.BackColor = Color.Transparent
-        Label4.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(195, 282)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(343, 86)
-        Label4.TabIndex = 5
-        Label4.Text = "YOU WIN!"
-        Label4.Visible = False
+        Label5.AutoSize = True
+        Label5.BackColor = Color.Transparent
+        Label5.Font = New Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(512, 46)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(157, 37)
+        Label5.TabIndex = 6
+        Label5.Text = "HighScore:"
         ' 
         ' Form1
         ' 
@@ -125,7 +124,7 @@ Partial Class Form1
         BackgroundImage = My.Resources.Resources._13
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(734, 650)
-        Controls.Add(Label4)
+        Controls.Add(Label5)
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
@@ -148,6 +147,6 @@ Partial Class Form1
     Friend WithEvents Timer3 As Timer
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
 
 End Class
