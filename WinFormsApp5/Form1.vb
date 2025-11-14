@@ -9,6 +9,7 @@ Public Class Form1
     Dim Score As Integer = 0
     Dim groundLevel As Integer
     Dim X As Integer
+    Dim Diff As Double
 
     Private Sub Form1_MouseMove(Sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         PictureBox1.Location = New Point(e.X - 90, 466)
@@ -38,6 +39,7 @@ Public Class Form1
             Label1.Text = "Score: " & Score.ToString()
             PictureBox2.Top = -64
             num = r.Next(1, 6)
+            Diff += 0.25
             Select Case num
                 Case 1
                     PictureBox2.Location = New Point(12, -104)
@@ -74,6 +76,7 @@ Public Class Form1
         If PictureBox2.Top = groundLevel Then
             Score -= 1
             Label1.Text = "Score: " & Score.ToString()
+            Diff -= 0.25
             Select Case num
                 Case 1
                     PictureBox2.Location = New Point(12, -104)
@@ -92,10 +95,26 @@ Public Class Form1
 
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
         If Score < 0 Then
-            Label2.Visible = True
+            Label3.Visible = True
             Application.DoEvents()
             Threading.Thread.Sleep(1500)
             End
+        ElseIf Score > 19 Then
+            Label4.Visible = True
+            Application.DoEvents()
+            Threading.Thread.Sleep(1500)
+            End
+        End If
+        If Diff = 1 Then
+            gravity = 1
+        ElseIf Diff = 2 Then
+            gravity = 2
+        ElseIf Diff = 3 Then
+            gravity = 3
+        ElseIf Diff = 4 Then
+            gravity = 4
+        ElseIf Diff = 5 Then
+            gravity = 5
         End If
     End Sub
 End Class
